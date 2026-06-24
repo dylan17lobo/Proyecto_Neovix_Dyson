@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#acb5cf",
+                    "secondary-container": "#3e465d",
+                    "tertiary-fixed": "#dee2f2",
+                    "surface-container-lowest": "#010f1f",
+                    "tertiary-container": "#d5d9e9",
+                    "secondary-fixed-dim": "#bdc6e1",
+                    "on-tertiary": "#2b303c",
+                    "primary-fixed-dim": "#00dbe9",
+                    "on-tertiary-fixed-variant": "#424754",
+                    "on-tertiary-fixed": "#171b27",
+                    "surface-container-high": "#1c2b3c",
+                    "outline": "#849495",
+                    "inverse-surface": "#d4e4fa",
+                    "on-secondary-fixed": "#121b2f",
+                    "on-secondary-fixed-variant": "#3e465d",
+                    "on-error": "#690005",
+                    "on-primary-container": "#006970",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e2fe",
+                    "primary-fixed": "#7df4ff",
+                    "error-container": "#93000a",
+                    "tertiary": "#f5f5ff",
+                    "surface-dim": "#051424",
+                    "surface-container": "#122131",
+                    "surface-container-highest": "#273647",
+                    "surface-tint": "#00dbe9",
+                    "on-surface": "#d4e4fa",
+                    "secondary": "#bdc6e1",
+                    "surface-container-low": "#0d1c2d",
+                    "on-tertiary-container": "#5a5f6c",
+                    "background": "#051424",
+                    "on-surface-variant": "#b9cacb",
+                    "inverse-on-surface": "#233143",
+                    "on-primary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#c2c6d6",
+                    "surface": "#051424",
+                    "outline-variant": "#3b494b",
+                    "on-background": "#d4e4fa",
+                    "on-secondary": "#273045",
+                    "primary-container": "#00f0ff",
+                    "inverse-primary": "#006970",
+                    "primary": "#dbfcff",
+                    "surface-variant": "#273647",
+                    "on-primary": "#00363a",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-bright": "#2c3a4c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "2xl": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Sora"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "label-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #05070A;
+            color: #d4e4fa;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: #00dbe9;
+            box-shadow: 0 0 20px rgba(0, 219, 233, 0.1);
+            transform: translateY(-2px);
+        }
+        .spec-line {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(59, 73, 75, 0.3);
+            padding: 4px 0;
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #00dbe9 0%, #006970 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #051424;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b494b;
+            border-radius: 10px;
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(0, 219, 233, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-sm max-w-container-max mx-auto bg-surface-container-low/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-[0_0_20px_rgba(0,219,233,0.15)]">
+<div class="flex items-center gap-xl">
+<h1 class="font-display-lg text-display-lg font-bold tracking-tighter text-primary-container cursor-pointer">NEOVIX DYSON</h1>
+<nav class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Processors</a>
+<a class="font-body-md text-body-md text-primary-container border-b-2 border-primary-container pb-1" href="#">Graphics</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Storage</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Memory</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Cases</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary-container transition-colors">search</span>
+<input class="bg-surface-container-highest/30 border border-outline-variant/20 rounded-lg pl-10 pr-4 py-2 text-label-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 w-64 transition-all" placeholder="Scan Repository..." type="text"/>
+</div>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary-container transition-all active:scale-95" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined p-2 text-on-surface-variant hover:text-primary-container transition-all active:scale-95" data-icon="person">person</button>
+</div>
+</header>
+<div class="flex pt-24 min-h-screen">
+<!-- Sidebar Filters -->
+<aside class="hidden lg:flex flex-col w-72 h-[calc(100vh-6rem)] fixed left-0 top-24 px-lg py-md border-r border-outline-variant/10 bg-surface-container-lowest overflow-y-auto custom-scrollbar">
+<div class="space-y-xl">
+<!-- Category -->
+<div>
+<h3 class="font-label-md text-label-md text-primary-fixed-dim mb-md uppercase tracking-widest">Category</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-md group cursor-pointer">
+<input checked="" class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Graphics Cards</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Processors</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">NVMe Storage</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Memory Modules</span>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div>
+<h3 class="font-label-md text-label-md text-primary-fixed-dim mb-md uppercase tracking-widest">Price Range</h3>
+<input class="w-full accent-primary-container h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="3000" min="0" type="range"/>
+<div class="flex justify-between mt-sm font-label-sm text-label-sm text-on-surface-variant">
+<span>$0</span>
+<span>$3,000+</span>
+</div>
+</div>
+<!-- Brand -->
+<div>
+<h3 class="font-label-md text-label-md text-primary-fixed-dim mb-md uppercase tracking-widest">Manufacturer</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">AeroVance</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Titan Core</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="rounded border-outline-variant bg-transparent text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Nova Dynamics</span>
+</label>
+</div>
+</div>
+<!-- Stock Status -->
+<div class="pt-md border-t border-outline-variant/10">
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-label-md text-label-md text-on-surface-variant">Available Stock Only</span>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-72 flex-1 px-lg md:px-2xl pb-2xl">
+<!-- Breadcrumbs / Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-md">
+<div>
+<div class="flex items-center gap-sm text-label-sm font-label-sm text-on-surface-variant mb-xs">
+<span>Hardware</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary-container">Graphics Units</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Vanguard Series GPUs</h2>
+</div>
+<div class="flex items-center gap-md w-full md:w-auto">
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap">Sort By:</span>
+<select class="bg-surface-container-low border border-outline-variant/20 rounded-lg px-md py-sm font-label-md text-label-md text-on-surface focus:outline-none focus:border-primary-container">
+<option>Highest Performance</option>
+<option>Price: Low to High</option>
+<option>Most Recent Release</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg">
+<!-- Product Card 1 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Titan X-90 Graphics Card" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-performance modern graphics card with triple fans and glowing cyan LED accents, photographed in a futuristic, dark studio environment. The device features sharp industrial design with metallic textures and visible copper heat pipes. Atmospheric blue lighting reflects off the polished dark surfaces, creating a sense of advanced engineering and raw processing power." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeg9Eyeeu_RE-nzNp8ihncz5X3lDzjYPeHmtsS6Faq3KQN_nYraPqPopgzWeIdpg8Z26Un9rIByCUvSjLjhm67diulqa44CGYpy00Ps-fm8gafPwtRVUMzDLEOkkogEfq2YZ63SgRcgRwKJjS00kvnCov5NHwyXEH_-kL2serBT9POBNYLDtX5GUFA9bTdT3XxPhyP9U7NrhJebLHKGJ3_FCGWwVHV9iB7Aap31kBwqAc3KGoA0tR7CgIlqAg4HLanMxhlm3-iGs8V"/>
+<div class="absolute top-md right-md">
+<span class="bg-primary-container text-on-primary-fixed font-label-sm text-label-sm px-md py-1 rounded-full flex items-center gap-xs shadow-lg">
+<span class="w-2 h-2 rounded-full bg-on-primary-fixed animate-pulse"></span>
+                                IN STOCK
+                            </span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Titan X-90 Apex</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Nova Dynamics Aerospace</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$1,499.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">4.9</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">24GB GDDR6X</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">2.7 GHz Boost</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">350W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Pulse Core 7000" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek black graphics card with dual fans and minimalist white glowing logo, set against a dark architectural background. The design is clean and professional, focusing on precision-milled aluminum casing and fine mesh ventilation. Soft rim lighting highlights the sharp edges and sophisticated build quality in a high-tech dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-jgwK2wN27daheivApyrmsS9f1NQXjxo7bZ6fC51ZJSzWUODSKi_-hmZ6g3rKeNzodaUVLLNXD0BPn8tZQaPPD4WSN8_TF9LLb_Sehx5asAvc_Sr3zB6hUIxVjBICS6IWy6FfI4v6Ib5uBX81SX0UuzeFjYhZMhsKNRlf35TDqNdSJyY2Ti6ogIB0hs-ikfcIM_6gJNX5yQTTGcmBQqxATckqTPbZwM6-j0jBkaK6EZDnr9RpioQkzIUpvljljL3eDgDBpI9Wh_hz"/>
+<div class="absolute top-md right-md">
+<span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-md py-1 rounded-full flex items-center gap-xs">
+                                LOW STOCK
+                            </span>
+</div>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Pulse Core 7000</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">AeroVance Labs</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$829.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">4.7</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">16GB GDDR6</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">2.4 GHz Boost</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">220W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Spectra Pro Ultra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a high-end graphics card printed circuit board with glowing components and intricate circuitry. The scene is bathed in an atmospheric deep magenta and cyan neon glow, highlighting the complex engineering and microscopic transistors. The visual style is cyber-industrial, emphasizing the technological precision and high-fidelity performance of the hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIl56O6BW-ddmURWkZUMa-JilcLR19t6KhTCjbQ8LcF97sUE1Sw-KeVO-oLt7JO7H0sPN1WnQNz2IlDSA3gwwIWpMGTW0ch-s0do3qwiXvsmgOFNi2taKVaWMLViNRHbEwnxIkyNUh_pI0xd_4ZnqP6emPCg78b8OLxiFHfGgV1nloXObB36LnBdNreQsUUCeSmbK7rZv880S4nr6-8v07os7oNHsCvFipjDgiSf2lqlyuayhmsAB0AVLAa1Y7ME2d75LdTS6rbNQ"/>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Spectra Pro Ultra</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Titan Core Systems</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$2,199.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">5.0</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">48GB ECC HBM3</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">3.1 GHz Boost</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">450W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="FrostByte 60" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist white graphics card with translucent fans, reflecting a pristine laboratory-like environment. The lighting is bright and ethereal, using cool white tones to emphasize the purity and futuristic design of the hardware. The aesthetic is extremely high-end and modern, contrasting with traditional dark computer components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClAzS8BybEHdCMjTqBmThMgZ4npBd8wHUilFP3nhuxQ-ItbG2MZEFjIoL3nPHcsBWGbS4haWBSj6Jv1ssyr97YcSqnruhX_qwD68YrpEREX89RLTc1h1vnfMKos0Ihsb5zZn7J1RFT0nEbO_XDo8dDJBgFUUykOfLXwoD7DcndsKgvhANtc5m8-B5A2CtUzqRful-cPQi0O0Omcnz5K07hPd02JfZNs_-q_AjC6dvnX08DACyLLwVMu2c0gYKjLKR5dJh31Uw8HWqz"/>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">FrostByte 60 White</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Nova Dynamics</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$599.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">4.5</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">12GB GDDR6</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">2.1 GHz Boost</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">180W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Vulcan Core X" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial-grade graphics processor with a heavy-duty copper vapor chamber cooling system. The hardware is showcased in an exploded view style within a dark, gritty workshop setting, illuminated by sparks and orange embers. The visual tone is powerful and raw, highlighting the extreme durability and thermal management capabilities of the component." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD582a_tRC5lUlY4pGAIGXfIQOMpn8jrFWsn3jfVDVv0B_LUfx2jytRvJcpSIhyd7QjyU_yH3RwlV-dUBrRc6c0--ZX4kdWfIxX3tw4ECZ_OyJZSYTUsLeFzLbL7KPp5bL2_5QSOD5DvfZjwbty2kt9S9zv5xYVD074fDZwOFXXztSQOa1yNQY8spfJGlXzeK-7peM1HyOJe6diwWrUPaOB-HSZPrKT-ds4Na8ZwMnmX5EmmLSVH-xuXhqaasnIQ0kT0CMiS3cXuBV5"/>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Vulcan Core X</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Forge Master IC</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$1,150.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">4.8</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">20GB GDDR6X</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">2.5 GHz Boost</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">320W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Server Grid S1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A futuristic workstation setup featuring multiple graphics cards installed in a transparent server rack. The room is dark, with intense green and blue ambient light highlighting the water-cooling tubes and the complex internal architecture. The image emphasizes the scale and professional environment of high-density computing and server-grade hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP7nLv0jiyf4g3ON7cxZQ5yVcsSuCDm73WHjSltQt0mc8GuxVHEZGycP1AaJ5Rd3y1tQZsvgLBNq33gRNW6Lj5UPHy-h9fnGB2a_2G-V1WdnPWg7ydiRhY0ni8Cwd7JEDfXNj1tU3q1NQ590857l3-sVI0Kot96rQ2QRLYgBtwBzVDwWWQhHuHuPFGr9eMeD7ZIQSzBxRSs-SHKdePzCkubnI0AlZ4g8WzBBVkiIp-7GBRizuN50do1EwMtEGKyfmzFwqz2qvrGAh0"/>
+</div>
+<div class="p-md space-y-md">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Server Grid S1</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Cluster Logic</p>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">$3,450.00</p>
+<div class="flex items-center gap-xs text-secondary justify-end">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm">5.0</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">VRAM</span>
+<span class="text-on-surface">80GB HBM3e</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Clock Speed</span>
+<span class="text-on-surface">1.8 GHz Base</span>
+</div>
+<div class="spec-line font-label-sm text-label-sm border-none">
+<span class="text-on-surface-variant">TDP</span>
+<span class="text-on-surface">700W</span>
+</div>
+</div>
+<button class="w-full accent-gradient py-md rounded-lg font-label-md text-label-md text-white uppercase tracking-widest hover:neon-glow transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-2xl flex justify-center items-center gap-md">
+<button class="p-2 border border-outline-variant/20 rounded hover:bg-surface-container-high transition-colors text-on-surface-variant material-symbols-outlined">chevron_left</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-primary-container bg-primary-container/10 text-primary-container font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant/20 hover:bg-surface-container-high transition-colors font-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant/20 hover:bg-surface-container-high transition-colors font-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant/20 hover:bg-surface-container-high transition-colors font-label-md">12</button>
+<button class="p-2 border border-outline-variant/20 rounded hover:bg-surface-container-high transition-colors text-on-surface-variant material-symbols-outlined">chevron_right</button>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-4 gap-lg bg-surface-dim border-t border-outline-variant/20 mt-2xl">
+<div class="md:col-span-1">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-md">NEOVIX DYSON</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-md leading-relaxed">
+                Engineering precision for the next generation of computing. We provide high-fidelity hardware components for elite system builders.
+            </p>
+<p class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-widest">© 2024 NEOVIX DYSON | ENGINEERING PRECISION</p>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-widest mb-md">Navigation</h5>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Technical Support</a>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">RMA Portal</a>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">System Configurator</a>
+</div>
+<div class="space-y-sm">
+<h5 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-widest mb-md">Company</h5>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Newsletter</a>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Global Shipping</a>
+<a class="block font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+</div>
+<div>
+<h5 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-widest mb-md">Secure Channel</h5>
+<div class="flex gap-md mb-md">
+<button class="p-2 bg-surface-container-high rounded hover:text-primary-container transition-colors"><span class="material-symbols-outlined">rss_feed</span></button>
+<button class="p-2 bg-surface-container-high rounded hover:text-primary-container transition-colors"><span class="material-symbols-outlined">alternate_email</span></button>
+<button class="p-2 bg-surface-container-high rounded hover:text-primary-container transition-colors"><span class="material-symbols-outlined">terminal</span></button>
+</div>
+<div class="p-sm bg-surface-container-highest/20 rounded border border-outline-variant/10 text-label-sm text-on-surface-variant">
+                Verified: System Core 4.9.2
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.style.transform = 'scale(0.95)');
+            btn.addEventListener('mouseup', () => btn.style.transform = 'scale(1)');
+            btn.addEventListener('mouseleave', () => btn.style.transform = 'scale(1)');
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput?.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('neon-glow');
+        });
+        searchInput?.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('neon-glow');
+        });
+    </script>
+</body></html>

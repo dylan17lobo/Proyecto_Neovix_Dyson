@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEOVIX DYSON | Engineering Precision</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#acb5cf",
+                    "secondary-container": "#3e465d",
+                    "tertiary-fixed": "#dee2f2",
+                    "surface-container-lowest": "#010f1f",
+                    "tertiary-container": "#d5d9e9",
+                    "secondary-fixed-dim": "#bdc6e1",
+                    "on-tertiary": "#2b303c",
+                    "primary-fixed-dim": "#00dbe9",
+                    "on-tertiary-fixed-variant": "#424754",
+                    "on-tertiary-fixed": "#171b27",
+                    "surface-container-high": "#1c2b3c",
+                    "outline": "#849495",
+                    "inverse-surface": "#d4e4fa",
+                    "on-secondary-fixed": "#121b2f",
+                    "on-secondary-fixed-variant": "#3e465d",
+                    "on-error": "#690005",
+                    "on-primary-container": "#006970",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e2fe",
+                    "primary-fixed": "#7df4ff",
+                    "error-container": "#93000a",
+                    "tertiary": "#f5f5ff",
+                    "surface-dim": "#051424",
+                    "surface-container": "#122131",
+                    "surface-container-highest": "#273647",
+                    "surface-tint": "#00dbe9",
+                    "on-surface": "#d4e4fa",
+                    "secondary": "#bdc6e1",
+                    "surface-container-low": "#0d1c2d",
+                    "on-tertiary-container": "#5a5f6c",
+                    "background": "#051424",
+                    "on-surface-variant": "#b9cacb",
+                    "inverse-on-surface": "#233143",
+                    "on-primary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#c2c6d6",
+                    "surface": "#051424",
+                    "outline-variant": "#3b494b",
+                    "on-background": "#d4e4fa",
+                    "on-secondary": "#273045",
+                    "primary-container": "#00f0ff",
+                    "inverse-primary": "#006970",
+                    "primary": "#dbfcff",
+                    "surface-variant": "#273647",
+                    "on-primary": "#00363a",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-bright": "#2c3a4c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "2xl": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Sora"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "label-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #05070A; color: #d4e4fa; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .accent-glow {
+            box-shadow: 0 0 20px rgba(0, 219, 233, 0.15);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 219, 233, 0.5);
+        }
+        .spec-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 8px;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba(0,219,233,0) 0%, rgba(0,219,233,0.1) 50%, rgba(0,219,233,0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scan 6s linear infinite;
+        }
+        @keyframes scan {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-sm max-w-container-max mx-auto bg-surface-container-low/80 backdrop-blur-xl border-b border-outline-variant/10 shadow-[0_0_20px_rgba(0,219,233,0.15)]">
+<div class="font-display-lg text-display-lg font-bold tracking-tighter text-primary-container">
+            NEOVIX DYSON
+        </div>
+<nav class="hidden md:flex gap-xl items-center">
+<a class="font-body-md text-body-md text-primary-container border-b-2 border-primary-container pb-1" href="#">Processors</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Graphics</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Storage</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Memory</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Cases</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-highest/50 transition-all duration-300 rounded-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-highest/50 transition-all duration-300 rounded-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</header>
+<main class="pt-2xl">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center px-2xl overflow-hidden">
+<div class="absolute inset-0 z-0">
+
+<div class="scanline"></div>
+</div>
+<div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center relative z-10">
+<div class="space-y-lg">
+<div class="inline-flex items-center px-md py-xs bg-primary-container/10 border border-primary-container/20 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary-container mr-sm animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary-container tracking-widest">QUANTUM-CORE ARCHITECTURE</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white leading-tight">
+                        PRECISION <span class="text-primary-container italic">ENGINEERED</span> PERFORMANCE.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Experience the next evolution of hardware. Neovix Dyson processors deliver surgical precision in computational workflows, designed for those who redefine the boundaries of possibility.
+                    </p>
+<div class="flex gap-md pt-md">
+<button class="px-xl py-md bg-gradient-to-r from-primary-container to-on-primary-container text-on-primary font-label-md text-label-md font-bold rounded-lg shadow-[0_0_30px_rgba(0,219,233,0.3)] hover:scale-105 transition-transform active:scale-95">
+                            CONFIGURE SYSTEM
+                        </button>
+<button class="px-xl py-md border border-outline/30 font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-colors">
+                            VIEW BLUEPRINTS
+                        </button>
+</div>
+</div>
+<div class="hidden lg:block relative aspect-square">
+<div class="absolute inset-0 glass-panel rounded-full blur-3xl opacity-20"></div>
+
+</div>
+</div>
+</section>
+<!-- Featured Categories Bento Grid -->
+<section class="py-2xl px-2xl">
+<div class="container mx-auto">
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-white mb-base">CORE CATEGORIES</h2>
+<div class="w-24 h-1 bg-primary-container"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg h-[600px]">
+<div class="md:col-span-8 group relative overflow-hidden glass-panel rounded-xl">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A macro shot of a cutting-edge computer processor with complex circuitry and holographic light trails in a dark, futuristic laboratory setting. The lighting is dominated by neon cyan and deep cobalt blue, emphasizing technical precision and cold industrial design. The overall mood is high-performance and technologically advanced." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgV67flX0RpfYrzxLF79XyBeNHkFSp-pN8_BBKSMIwbcAJi1hHxydGu4ykTb2OTfmrehn-IXSXWQXINf8JI5-gSXjMg2uaO3NeTqDYxmYXapl9Rbp_1k0n88c1Lz6uQP8iaLkaRAnXEdHkKVMsT35Hzt2zO9zCmS3A0ROr6RikI9oTE2S03b-6LnLcevex5hN7ceygD5rSWuvpr6TzcEc3HlXzOUBF0OMMYr9BBkKNtDkHqOHlIIeaPXv7JLvVuditx1Miduhunhb-')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-lg left-lg p-lg">
+<span class="font-label-sm text-label-sm text-primary-container">NEOVIX N-SERIES</span>
+<h3 class="font-headline-md text-headline-md text-white mt-sm">CENTRAL PROCESSORS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-sm">128-core powerhouse for deep learning and high-fidelity rendering.</p>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden glass-panel rounded-xl">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="Close-up of high-end graphics card cooling fans with glowing RGB accents in a clean, dark tech environment. Soft atmospheric smoke and cyan laser lines cut through the frame, creating a sense of dynamic speed and intense thermal management. The visual style is sleek, modern, and high-fidelity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCl8PqnRJVsMshywlYDnwsC3Tmh0ikeSziztkQ71_REArSa8biL5FoJEsfJhwxkKOV1pRk4XbAXWvFp06NaVN25NoNdO9Oos6XhrarsjHI1xRaFDdkDlwsRVUi-UI6rfrpn6B8CDTkeRu6Fwj7FvRxoTbMaOyiraHJh8rRpe6LKny8YlhPjj-FlEgYdBCGtQ3RVZHksqYLPXQtJnFATVdC4uzHn5ASWbAQYKwNxjTG5PPpb-sHZceuPGL6afS-0lD8Ondi4IsgwomwQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-lg left-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-white">GRAPHICS</h3>
+<a class="font-label-sm text-label-sm text-primary-container flex items-center mt-sm group-hover:gap-md transition-all" href="#">EXPLORE GPU <span class="material-symbols-outlined ml-xs">arrow_forward</span></a>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden glass-panel rounded-xl">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="DDR5 memory modules with brushed metal heat sinks and integrated light bars, arranged symmetrically in a dark-mode tech aesthetic. The lighting is low-key with sharp cyan highlights reflecting off the metallic surfaces. The composition emphasizes stability, speed, and premium build quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4xRHh4N7ZRPr9iCWHYh3lwBdTsls3Qeq76KJ3VTXqajozkOW34MnJ-z60UACuM7-N1aZCETq06ByYKOc2angWP7EgOFxFMWi1KNiqatKd7wX5A8gaIxnipovCnjTSH9SYrQpWkdS-fnpTG_VHeQ2Qy4t-PC0uTIyXMdc16GJjydBzPZZelQUHgG-xGIIpuDK-HwEYCGmqllmdwiO3ZzVqf2v8GgU32daAgk6Jzfy2jOAVV_qd4Eqo-mO31hcHxBukYfCDCYVHo61B')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-lg left-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-white">MEMORY</h3>
+</div>
+</div>
+<div class="md:col-span-8 group relative overflow-hidden glass-panel rounded-xl">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An ultra-modern PC chassis with tempered glass panels and internal liquid cooling pipes filled with glowing neon cyan fluid. The background is a clean, dark futuristic workshop with subtle blueprint projections on the walls. The scene conveys a sense of professional grade engineering and high-performance craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDl8gtYfpBdrWQXznFmQIoGG4NL4UPDNWaoqFNuCQ8VDFLAC8A5f4Ba1lBO3Sk5M4uoG9G8sAIKVode_526NLSfOOEUjMY_SOqU_fwC1KXLmtTCsvRSXBYmWyxA4txgDlI5zXpi7qIvoke4waYgT10TYs6eRxFTxDEPLmjcGmPSt9EngDgw29rJUIQQKAjIY3Q_MErSdf4PKb2xNhs-qp7vR0e2psRibPBkLg08meKX23Rsi1R-sZgS9rwt-Y-3wFXrgQS0MrtaAcFV')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-lg left-lg p-lg">
+<h3 class="font-headline-md text-headline-md text-white">CHASSIS &amp; COOLING</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bestsellers Section (Glass Cards) -->
+<section class="py-2xl bg-surface-dim/30">
+<div class="container mx-auto px-2xl">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-white">BESTSELLERS</h2>
+<p class="text-on-surface-variant font-body-md mt-xs">Battle-tested by the world's elite builders.</p>
+</div>
+<button class="font-label-md text-label-md text-primary-container hover:underline transition-all">VIEW ALL PRODUCTS</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Product Card 1 -->
+<div class="group glass-panel rounded-lg p-md hover:border-primary-container transition-all duration-500 accent-glow flex flex-col h-full">
+<div class="relative aspect-square mb-md overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A high-performance NVIDIA RTX series graphics card with triple fans and a metallic backplate, resting on a reflective black surface. The ambient lighting is dark with sharp cyan and white highlights tracing the edges of the card. The shot is clean, professional, and emphasizes technical specs and cooling efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASdvSpc8btm-rw_0aWRhXuGNyxl-VBqt-GxUtIZz6WVJx5XurSz8dmdKPG4hRuESAkNePxgugdmnb4wHtO05d79H83d3y7Rxzsjbne8BrcMdqMywkPJ49CRC-vwEBo8bh8f-JaAkbcWM09wa5jUPWB7FPq4uCwanBoariEIYcLBqD68rEwKJo9rmNSTzk4LZ_OvNHyPQp0n1fhh0yU2viw0lQt4X7vEgO_d88QoYsCI1o5sG5Vu8hgKtJ_VnMWU-b3yBCbGwExyi5h"/>
+<div class="absolute top-sm right-sm bg-primary-container text-on-primary-fixed px-sm py-xs font-label-sm text-label-sm rounded-sm">
+                                IN STOCK
+                            </div>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-white text-[18px]">TITAN DYSON X-9</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-xs">24GB VRAM | RAY-TRACING GEN 4</p>
+<div class="mt-md spec-grid border-t border-outline-variant/10 pt-md">
+<span class="font-label-sm text-on-surface-variant uppercase">Core Clock</span>
+<span class="font-label-sm text-primary-container text-right">2.8 GHz</span>
+<span class="font-label-sm text-on-surface-variant uppercase">TDP</span>
+<span class="font-label-sm text-primary-container text-right">320W</span>
+</div>
+</div>
+<div class="mt-lg flex justify-between items-center">
+<span class="font-display-lg text-headline-md text-white">$1,499.00</span>
+<button class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group glass-panel rounded-lg p-md hover:border-primary-container transition-all duration-500 accent-glow flex flex-col h-full">
+<div class="relative aspect-square mb-md overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A top-down macro view of an Intel Core i9 processor sitting on its protective plastic tray. The metallic surface of the IHS reflects sharp, bright white studio lights against a deep black background. The focus is incredibly sharp on the laser-etched branding and technical markings, conveying authenticity and high-end manufacturing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOEwlq79RvxNKxzP7qgNjp5M2sAtQ4OWgNHpiviEWaUONrlbBbomj12Yr0f0f2EoeVmE8r34eEIJtjqZkaVJMJgjQCIe38yo59YpYbYlDmqlHqjiF_ybS4vyRPnw7-fTLhQZk91L7M-KhS2hEDpO1v64PCqbsVWAKT_4LFjTF0XELoRlM2l4mE0iqqzvHK6jboTh1mUtE1DcHCzPlxh3rrv7FW8SSU6Fq-qFXFTupS1wNEPbzKQzXHXBOiFAymzjPT9L0dkAGc2ApS"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-white text-[18px]">QUANTUM 9900X</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-xs">16 CORES | 5.4GHz BOOST</p>
+<div class="mt-md spec-grid border-t border-outline-variant/10 pt-md">
+<span class="font-label-sm text-on-surface-variant uppercase">Architecture</span>
+<span class="font-label-sm text-primary-container text-right">NEO-LITH 4nm</span>
+</div>
+</div>
+<div class="mt-lg flex justify-between items-center">
+<span class="font-display-lg text-headline-md text-white">$589.00</span>
+<button class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group glass-panel rounded-lg p-md hover:border-primary-container transition-all duration-500 accent-glow flex flex-col h-full">
+<div class="relative aspect-square mb-md overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Modern NVMe SSD drive with a rugged heatsink and integrated RGB lighting casting a subtle glow on the motherboard socket. The lighting is a mix of electric cyan and magenta, creating a high-tech gaming aesthetic. The composition is angled to show off the sleek profile and dense technical components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiRJ027eH9etgYfCCIZH5IaefCq1auzrVUlxk4PfbFzK6c0zv6vaeDs9Y_ybvaQYLLf42sc_okdLlYSLgDpd9sEk5trE0wVfxJA9UO0vj8Sy085om54Q-FzN6ACIcPpJzThsdYgtzrm_bxuku6YSqU2Hk8liRe6NKlr-5iXUC1F7BmVaxGiv-xrgymWY7kkMmfxGiyC42oup3lwuIDqZV4m7Qiz1z_uc5Jk9lTDGQ3hInoi0ZRCZYNUaH_jvmffR8E-v1mR6zGQ3iq"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-white text-[18px]">VOID DRIVE Z-1</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-xs">2TB | GEN 5 PCIE</p>
+<div class="mt-md spec-grid border-t border-outline-variant/10 pt-md">
+<span class="font-label-sm text-on-surface-variant uppercase">Read Speed</span>
+<span class="font-label-sm text-primary-container text-right">12,500 MB/s</span>
+</div>
+</div>
+<div class="mt-lg flex justify-between items-center">
+<span class="font-display-lg text-headline-md text-white">$299.00</span>
+<button class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group glass-panel rounded-lg p-md hover:border-primary-container transition-all duration-500 accent-glow flex flex-col h-full">
+<div class="relative aspect-square mb-md overflow-hidden rounded">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="A pair of high-frequency RAM sticks with matte black heat spreaders and a diffuse white light bar along the top. The sticks are positioned in a dark, clean environment with sharp blue accent lighting. The image emphasizes the symmetric beauty of precision computer hardware and the clean aesthetic of modern system builds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMIJUzC_UOa9UaZAUwrhd54nxu0ezOcC5JLSGgiuwEnfCPMPQpGq2Lk6BtCc2wU2V0aCu4_Jjbr_VrkvgCUwcyh65UbI2LhfZ0sRunV9l6eqKNlz2hSKHSICf7BPfLOZ-Hdqn-sxt91_qWWerzHtcSusah9jJrKXbzkmW_15VbRhQvyPdEyYWUnkg6VD94PprSlWIFaQV6N9Pn3db6_eo3ec-fGvzQKb8eJe1zcPjX30QKGfR_5zSlhsWoKSqkpq9_EN_t__rHOk5_"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-white text-[18px]">PULSE DDR5-8000</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-xs">64GB KIT | CL32</p>
+<div class="mt-md spec-grid border-t border-outline-variant/10 pt-md">
+<span class="font-label-sm text-on-surface-variant uppercase">Latency</span>
+<span class="font-label-sm text-primary-container text-right">8.0ns</span>
+</div>
+</div>
+<div class="mt-lg flex justify-between items-center">
+<span class="font-display-lg text-headline-md text-white">$429.00</span>
+<button class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center hover:bg-primary-container hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals Grid -->
+<section class="py-2xl px-2xl">
+<div class="container mx-auto">
+<div class="flex items-center gap-lg mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-white whitespace-nowrap">NEW ARRIVALS</h2>
+<div class="h-[1px] w-full bg-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Feature Large 1 -->
+<div class="relative glass-panel rounded-xl overflow-hidden group h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" data-alt="A futuristic liquid-cooled computer setup featuring transparent tubing with glowing cyan coolant and high-tech fittings. The background is a dimly lit gaming room with ambient hexagonal wall lighting. The focus is on the intricate plumbing and the technical complexity of high-end thermal solutions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqpY2kYHSWt7HgYT_s9Sp8YrLjXl1TA4ul_1AV4IPnLJeI43OOPalgXS5oFZ2fy10yIVb5VMmb7UrQGyc10q4Zj3NkJcBFrRyjG94s1_fzdMGMRbvRudYYomvmqPVW4GwF4FG87sI-iZboRP5ViopILzRpSnTCATUiUp7See4loe3sErxXQ8tLbgputiZJWbUd067BtItSWP3cmvqSw4GYeDjaH7TTXtLJex-qZFMq5WdsBmMa5SAhIT7lIRNcEXF6scXpVy8dqxLf"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background to-transparent"></div>
+<div class="relative z-10 h-full flex flex-col justify-center p-2xl max-w-md">
+<span class="font-label-sm text-label-sm text-primary-container mb-sm">COOLING REVOLUTION</span>
+<h3 class="font-display-lg text-headline-lg text-white">CRYOSHIELD LIQUID PRO</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-md">Sub-ambient cooling technology integrated into a sleek 360mm radiator system. Maximum overclocking, zero thermal throttling.</p>
+<button class="mt-xl font-label-md text-label-md text-primary-container flex items-center group/btn">
+                                VIEW THE TECH <span class="material-symbols-outlined ml-sm group-hover/btn:translate-x-2 transition-transform">east</span>
+</button>
+</div>
+</div>
+<!-- Feature Large 2 -->
+<div class="relative glass-panel rounded-xl overflow-hidden group h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-1000" data-alt="An extreme wide-angle shot of a high-end dual-monitor workstation in a dark, minimalist home office. The desk is clean, featuring a mechanical keyboard with cyan backlighting and a sleek computer tower with internal light trails. The overall atmosphere is focused, professional, and visually stunning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMtOYHrgsY83SLBDIPzwDxvYkV3br5s9T6HouMfDWjlbDPJwHsF9BsSh675-K1zDq3MJDAkSoBxXdZlbBqdKOqoxf2z5eb1zwEA0jDCSB2wb_I3vZ-bsIJNMyWM0tiPKbBWyJyR4i3uCkqvE5bzE0kFMDB2l2caOvTtLJRipOu0yM4r1tcKTMock3huh7P2DZINvbsJ0p81VuLbj9iW6aEdVYXzS_2gQYaSVp3M5R9CU3Yq3-N8h14aONef4Uo_NElggtdYYL_Bb5E"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background to-transparent"></div>
+<div class="relative z-10 h-full flex flex-col justify-center p-2xl max-w-md">
+<span class="font-label-sm text-label-sm text-primary-container mb-sm">PLATFORM UPGRADE</span>
+<h3 class="font-display-lg text-headline-lg text-white">X-890 MOTHERBOARD</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-md">DDR5 ready, 24-phase power delivery, and triple PCIe 5.0 lanes. The foundation of your next masterpiece.</p>
+<button class="mt-xl font-label-md text-label-md text-primary-container flex items-center group/btn">
+                                CONFIGURE NOW <span class="material-symbols-outlined ml-sm group-hover/btn:translate-x-2 transition-transform">east</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="py-2xl relative overflow-hidden">
+<div class="container mx-auto px-2xl">
+<div class="glass-panel p-2xl rounded-xl flex flex-col md:flex-row items-center justify-between gap-xl relative overflow-hidden">
+
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-white">STAY IN THE CIRCUIT</h2>
+<p class="text-on-surface-variant font-body-lg mt-sm max-w-md">Get exclusive access to pre-order windows, system guides, and hardware performance deep-dives.</p>
+</div>
+<div class="relative z-10 w-full md:w-auto flex flex-col sm:flex-row gap-md">
+<input class="bg-surface-container-low border-b-2 border-primary-container/30 focus:border-primary-container focus:ring-0 text-white font-label-md py-md px-xl min-w-[300px] outline-none" placeholder="ENCRYPTION@NEOVIX.TECH" type="email"/>
+<button class="bg-primary-container text-on-primary-fixed font-label-md text-label-md font-bold px-xl py-md hover:brightness-110 transition-all">CONNECT</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg grid grid-cols-1 md:grid-cols-4 gap-lg bg-surface-dim border-t border-outline-variant/20">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-md">
+<div class="font-headline-md text-headline-md text-on-surface">NEOVIX DYSON</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Engineering the next epoch of computational hardware with mathematical precision.</p>
+<div class="font-label-sm text-label-sm text-primary-fixed mt-lg">© 2024 NEOVIX DYSON | ENGINEERING PRECISION</div>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-md text-label-md text-on-surface mb-sm">HARDWARE</h5>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Processors</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Graphics Cards</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Memory Modules</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Motherboards</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-md text-label-md text-on-surface mb-sm">SUPPORT</h5>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Technical Support</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">RMA Portal</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Global Shipping</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">FAQ</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-md text-label-md text-on-surface mb-sm">RESOURCES</h5>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">System Configurator</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Newsletter</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Developer Portal</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Sustainability</a>
+</div>
+</footer>
+<script>
+        // Simple scroll reveal for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('translate-y-10');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-panel').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'translate-y-10', 'opacity-0');
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero shader background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroShader = document.querySelector('webgl-shader');
+            if (heroShader) {
+                heroShader.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEOVIX DYSON | Secure Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Sora:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#acb5cf",
+                    "secondary-container": "#3e465d",
+                    "tertiary-fixed": "#dee2f2",
+                    "surface-container-lowest": "#010f1f",
+                    "tertiary-container": "#d5d9e9",
+                    "secondary-fixed-dim": "#bdc6e1",
+                    "on-tertiary": "#2b303c",
+                    "primary-fixed-dim": "#00dbe9",
+                    "on-tertiary-fixed-variant": "#424754",
+                    "on-tertiary-fixed": "#171b27",
+                    "surface-container-high": "#1c2b3c",
+                    "outline": "#849495",
+                    "inverse-surface": "#d4e4fa",
+                    "on-secondary-fixed": "#121b2f",
+                    "on-secondary-fixed-variant": "#3e465d",
+                    "on-error": "#690005",
+                    "on-primary-container": "#006970",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e2fe",
+                    "primary-fixed": "#7df4ff",
+                    "error-container": "#93000a",
+                    "tertiary": "#f5f5ff",
+                    "surface-dim": "#051424",
+                    "surface-container": "#122131",
+                    "surface-container-highest": "#273647",
+                    "surface-tint": "#00dbe9",
+                    "on-surface": "#d4e4fa",
+                    "secondary": "#bdc6e1",
+                    "surface-container-low": "#0d1c2d",
+                    "on-tertiary-container": "#5a5f6c",
+                    "background": "#051424",
+                    "on-surface-variant": "#b9cacb",
+                    "inverse-on-surface": "#233143",
+                    "on-primary-fixed": "#002022",
+                    "tertiary-fixed-dim": "#c2c6d6",
+                    "surface": "#051424",
+                    "outline-variant": "#3b494b",
+                    "on-background": "#d4e4fa",
+                    "on-secondary": "#273045",
+                    "primary-container": "#00f0ff",
+                    "inverse-primary": "#006970",
+                    "primary": "#dbfcff",
+                    "surface-variant": "#273647",
+                    "on-primary": "#00363a",
+                    "on-primary-fixed-variant": "#004f54",
+                    "surface-bright": "#2c3a4c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "2xl": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Sora"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Sora"],
+                    "display-lg": ["Sora"],
+                    "label-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #05070A;
+            color: #d4e4fa;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 219, 233, 0.15);
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #00dbe9 0%, #006970 100%);
+        }
+        .input-focus-cyan:focus {
+            outline: none;
+            border-bottom-color: #00dbe9;
+        }
+        .tab-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Custom scrollbar for subtle feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3b494b; border-radius: 2px; }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- Global Background Shader Effect -->
+<div class="fixed inset-0 z-0">
+
+</div>
+<!-- Navigation Shell Suppressed for Auth Flow as per instructions -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-lg py-md">
+<div class="font-display-lg text-headline-md font-bold tracking-tighter text-primary-container flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">memory</span>
+            NEOVIX DYSON
+        </div>
+<div class="hidden md:block font-label-sm text-on-surface-variant">
+            CORE_SYSTEM_AUTH_V4.2
+        </div>
+</header>
+<main class="relative z-10 flex-grow flex items-center justify-center p-md">
+<div class="w-full max-w-[480px]">
+<!-- Auth Card -->
+<div class="glass-panel rounded-xl glow-cyan overflow-hidden">
+<!-- Tab Headers -->
+<div class="flex border-b border-outline-variant/20">
+<button class="flex-1 py-lg font-label-md text-label-md tab-transition text-primary-container border-b-2 border-primary-container bg-surface-container-low/30" id="login-tab" onclick="switchTab('login')">
+                        LOGIN
+                    </button>
+<button class="flex-1 py-lg font-label-md text-label-md tab-transition text-on-surface-variant hover:text-on-surface" id="register-tab" onclick="switchTab('register')">
+                        REGISTER
+                    </button>
+</div>
+<!-- Form Content -->
+<div class="p-xl">
+<!-- Login View -->
+<div class="space-y-lg block" id="login-form">
+<div class="space-y-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface">Welcome Back</h1>
+<p class="font-body-md text-on-surface-variant">Access your hardware ecosystem.</p>
+</div>
+<form class="space-y-lg" onsubmit="event.preventDefault();">
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">IDENTIFIER</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-md pl-11 pr-md font-body-md text-on-surface input-focus-cyan transition-all placeholder:text-outline-variant" placeholder="Email or Username" type="text"/>
+</div>
+</div>
+<div class="space-y-base">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">PASSCODE</label>
+<a class="font-label-sm text-label-sm text-primary-fixed-dim hover:underline" href="#">RECOVER ACCESS?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-md pl-11 pr-md font-body-md text-on-surface input-focus-cyan transition-all placeholder:text-outline-variant" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-4 h-4 bg-surface-container rounded border-outline-variant text-primary-fixed-dim focus:ring-primary-fixed-dim" id="remember" type="checkbox"/>
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="remember">MAINTAIN PERSISTENT SESSION</label>
+</div>
+<button class="w-full py-md accent-gradient text-on-primary font-label-md text-label-md rounded-lg active:scale-[0.98] transition-transform hover:shadow-[0_0_15px_rgba(0,219,233,0.3)]">
+                                INITIALIZE SESSION
+                            </button>
+</form>
+</div>
+<!-- Registration View (Hidden by default) -->
+<div class="space-y-lg hidden" id="register-form">
+<div class="space-y-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface">New System Node</h1>
+<p class="font-body-md text-on-surface-variant">Join the precision engineering network.</p>
+</div>
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">FIRST NAME</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-sm px-md font-body-md text-on-surface input-focus-cyan transition-all" placeholder="John" type="text"/>
+</div>
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">LAST NAME</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-sm px-md font-body-md text-on-surface input-focus-cyan transition-all" placeholder="Doe" type="text"/>
+</div>
+</div>
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">EMAIL ARCHIVE</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-sm px-md font-body-md text-on-surface input-focus-cyan transition-all" placeholder="admin@neovix.tech" type="email"/>
+</div>
+<div class="space-y-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant block">NEW PASSCODE</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant py-sm px-md font-body-md text-on-surface input-focus-cyan transition-all" placeholder="Minimum 12 characters" type="password"/>
+</div>
+<div class="p-sm bg-surface-container-low rounded border border-outline-variant/10">
+<p class="font-label-sm text-[10px] text-on-surface-variant leading-tight">
+                                    By registering, you acknowledge the NEOVIX Data Protocol and agree to the technical precision standards of our global network.
+                                </p>
+</div>
+<button class="w-full py-md accent-gradient text-on-primary font-label-md text-label-md rounded-lg active:scale-[0.98] transition-transform">
+                                CREATE CORE ACCOUNT
+                            </button>
+</form>
+</div>
+<!-- Social Login -->
+<div class="mt-xl space-y-lg">
+<div class="flex items-center gap-md">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">THIRD-PARTY LINK</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<button class="flex items-center justify-center p-md bg-surface-container-lowest border border-outline-variant/20 rounded-lg hover:bg-surface-container-highest/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-on-surface">terminal</span>
+</button>
+<button class="flex items-center justify-center p-md bg-surface-container-lowest border border-outline-variant/20 rounded-lg hover:bg-surface-container-highest/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-on-surface">data_object</span>
+</button>
+<button class="flex items-center justify-center p-md bg-surface-container-lowest border border-outline-variant/20 rounded-lg hover:bg-surface-container-highest/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-on-surface">cloud_sync</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats (Subtle) -->
+<div class="mt-lg grid grid-cols-3 gap-md">
+<div class="text-center space-y-base">
+<div class="font-label-sm text-primary-fixed-dim">99.9%</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest">Uptime</div>
+</div>
+<div class="text-center space-y-base">
+<div class="font-label-sm text-primary-fixed-dim">256-BIT</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest">AES-ENCR</div>
+</div>
+<div class="text-center space-y-base">
+<div class="font-label-sm text-primary-fixed-dim">HYBRID</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest">Storage</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="relative z-10 w-full py-lg px-lg flex flex-col md:flex-row justify-between items-center gap-md font-label-sm text-label-sm text-on-surface-variant border-t border-outline-variant/10">
+<div>© 2024 NEOVIX DYSON | ENGINEERING PRECISION</div>
+<div class="flex gap-lg">
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">STATUS</a>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">SECURITY PORTAL</a>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">LEGAL</a>
+</div>
+</footer>
+<script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                
+                loginTab.classList.add('text-primary-container', 'border-b-2', 'border-primary-container', 'bg-surface-container-low/30');
+                loginTab.classList.remove('text-on-surface-variant');
+                
+                registerTab.classList.remove('text-primary-container', 'border-b-2', 'border-primary-container', 'bg-surface-container-low/30');
+                registerTab.classList.add('text-on-surface-variant');
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                
+                registerTab.classList.add('text-primary-container', 'border-b-2', 'border-primary-container', 'bg-surface-container-low/30');
+                registerTab.classList.remove('text-on-surface-variant');
+                
+                loginTab.classList.remove('text-primary-container', 'border-b-2', 'border-primary-container', 'bg-surface-container-low/30');
+                loginTab.classList.add('text-on-surface-variant');
+            }
+        }
+    </script>
+</body></html>
