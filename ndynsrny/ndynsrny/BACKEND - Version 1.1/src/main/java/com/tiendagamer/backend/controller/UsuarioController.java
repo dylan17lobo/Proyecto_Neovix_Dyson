@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -50,5 +49,21 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioRepository.findAll();
         usuarios.forEach(u -> u.setPassword(null));
         return usuarios;
+    }
+
+    @PutMapping("/{id}/rol")
+    public ResponseEntity<?> actualizarRol(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Usuario no encontrado"));
+        }
+        String nuevoRol = body.get("rol");
+        if (nuevoRol == null || (!nuevoRol.equals("admin") && !nuevoRol.equals("cliente"))) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Rol inválido"));
+        }
+        usuario.setRol(nuevoRol);
+        usuarioRepository.save(usuario);
+        usuario.setPassword(null);
+        return ResponseEntity.ok(usuario);
     }
 }

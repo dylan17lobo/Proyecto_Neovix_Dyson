@@ -8,7 +8,7 @@ import type { CarritoProducto } from "../types";
 export function CarritoPage() {
   const { usuario } = useAuthCtx();
   const [items, setItems] = useState<CarritoProducto[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const cargar = () => {
     if (!usuario) {
@@ -48,10 +48,10 @@ export function CarritoPage() {
     if (!usuario) return;
     try {
       const res = await PedidoService.crear(usuario.idUsuario);
-      alert(`Pedido #${res.idPedido} creado exitosamente`);
+      alert(`Compra realizada con éxito. Pedido #${res.idPedido}`);
       cargar();
     } catch (e: unknown) {
-      alert(e instanceof Error ? e.message : "Error");
+      alert(e instanceof Error ? e.message : "Error al procesar la compra");
     }
   };
 

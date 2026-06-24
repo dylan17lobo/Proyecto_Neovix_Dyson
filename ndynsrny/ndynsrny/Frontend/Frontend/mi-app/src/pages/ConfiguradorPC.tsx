@@ -19,6 +19,8 @@ export function ConfiguradorPC() {
   const { usuario } = useAuthCtx();
 
   useEffect(() => {
+    // Primero asegurar que existan las categorías base
+    CategoriaService.seed().catch(console.error);
     Promise.all([ProductoService.listar(), CategoriaService.listar()])
       .then(([prods, cats]) => {
         setProductos(prods);
@@ -28,8 +30,11 @@ export function ConfiguradorPC() {
   }, []);
 
   const catActual = PASOS[paso];
+  // Buscar categoría con matching flexible (contiene el nombre del paso o viceversa)
   const catEntity = categorias.find(
-    (c) => c.nombreCategoria.toUpperCase() === catActual
+    (c) =>
+      c.nombreCategoria.toUpperCase().includes(catActual) ||
+      catActual.includes(c.nombreCategoria.toUpperCase())
   );
   const prodsFiltrados = catEntity
     ? productos.filter((p) => p.categoria?.idCategoria === catEntity.idCategoria && p.stock > 0)

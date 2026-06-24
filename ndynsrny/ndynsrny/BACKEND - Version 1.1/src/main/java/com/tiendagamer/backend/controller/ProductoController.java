@@ -4,9 +4,11 @@ import com.tiendagamer.backend.model.Producto;
 import com.tiendagamer.backend.model.repository.ProductoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/productos")
@@ -44,6 +46,22 @@ public class ProductoController {
             return productoRepository.save(existente);
         }
         return null;
+    }
+
+    @PatchMapping("/{id}/stock")
+    public ResponseEntity<?> ajustarStock(@PathVariable Long id, @RequestBody Map<String, Integer> body) {
+        Producto producto = productoRepository.findById(id).orElse(null);
+        if (producto == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Producto no encontrado"));
+        }
+        int cantidad = body.getOrDefault("cantidad", 0);
+        int nuevoStock = producto.getStock() + cantidad;
+        if (nuevoStock < 0) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Stock no puede ser negativo"));
+        }
+        producto.setStock(nuevoStock);
+        productoRepository.save(producto);
+        return ResponseEntity.ok(Map.of("mensaje", "Stock actualizado", "stock", nuevoStock));
     }
 
     @DeleteMapping("/{id}")

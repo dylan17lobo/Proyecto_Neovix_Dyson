@@ -5,6 +5,7 @@ import com.tiendagamer.backend.model.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -30,43 +31,60 @@ public class PedidoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Transactional
     @PostMapping("/crear")
     public ResponseEntity<?> crearPedido(@RequestBody Map<String, Long> body) {
-        Long idUsuario = body.get("idUsuario");
+        try {
+            Long idUsuario = body.get("idUsuario");
 
-        Usuario usuario = usuarioRepository.findById(idUsuario).orElse(null);
-        if (usuario == null) return ResponseEntity.badRequest().body(Map.of("error", "Usuario no encontrado"));
+            Usuario usuario = usuarioRepository.findById(idUsuario).orElse(null);
+            if (usuario == null) return ResponseEntity.badRequest().body(Map.of("error", "Usuario no encontrado"));
 
-        Carrito carrito = carritoRepository.findByUsuario(usuario).orElse(null);
-        if (carrito == null) return ResponseEntity.badRequest().body(Map.of("error", "Carrito vacío"));
+            Carrito carrito = carritoRepository.findByUsuario(usuario).orElse(null);
+            if (carrito == null) return ResponseEntity.badRequest().body(Map.of("error", "Carrito vacío"));
 
-        List<CarritoProducto> items = carritoProductoRepository.findByCarrito(carrito);
-        if (items.isEmpty()) return ResponseEntity.badRequest().body(Map.of("error", "Carrito vacío"));
+            List<CarritoProducto> items = carritoProductoRepository.findByCarrito(carrito);
+            if (items.isEmpty()) return ResponseEntity.badRequest().body(Map.of("error", "Carrito vacío"));
 
-        double total = items.stream().mapToDouble(ip -> ip.getProducto().getPrecio() * ip.getCantidad()).sum();
+            // Verificar stock suficiente
+            for (CarritoProducto cp : items) {
+                if (cp.getProducto().getStock() < cp.getCantidad()) {
+                    return ResponseEntity.badRequest().body(Map.of("error",
+                        "Stock insuficiente para: " + cp.getProducto().getNombreProducto()));
+                }
+            }
 
-        Pedido pedido = new Pedido();
-        pedido.setUsuario(usuario);
-        pedido.setFecha(LocalDateTime.now());
-        pedido.setTotal(total);
-        pedido.setEstado("pendiente");
-        pedido = pedidoRepository.save(pedido);
+            double total = items.stream().mapToDouble(ip -> ip.getProducto().getPrecio() * ip.getCantidad()).sum();
 
-        for (CarritoProducto cp : items) {
-            PedidoProducto pp = new PedidoProducto();
-            pp.setPedido(pedido);
-            pp.setProducto(cp.getProducto());
-            pp.setCantidad(cp.getCantidad());
-            pp.setPrecioUnitario(cp.getProducto().getPrecio());
-            pedidoProductoRepository.save(pp);
+            Pedido pedido = new Pedido();
+            pedido.setUsuario(usuario);
+            pedido.setFecha(LocalDateTime.now());
+            pedido.setTotal(total);
+            pedido.setEstado("pendiente");
+            pedido = pedidoRepository.save(pedido);
 
-            Producto p = cp.getProducto();
-            p.setStock(p.getStock() - cp.getCantidad());
+            for (CarritoProducto cp : items) {
+                PedidoProducto pp = new PedidoProducto();
+                pp.setPedido(pedido);
+                pp.setProducto(cp.getProducto());
+                pp.setCantidad(cp.getCantidad());
+                pp.setPrecioUnitario(cp.getProducto().getPrecio());
+                pedidoProductoRepository.save(pp);
+
+                Producto p = cp.getProducto();
+                p.setStock(p.getStock() - cp.getCantidad());
+                productoRepository.save(p);
+            }
+
+            carritoProductoRepository.deleteByCarrito(carrito);
+
+            return ResponseEntity.ok(Map.of("mensaje", "Pedido creado exitosamente", "idPedido", pedido.getIdPedido()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Error al crear pedido: " + e.getMessage()));
         }
-
-        carritoProductoRepository.deleteByCarrito(carrito);
-
-        return ResponseEntity.ok(Map.of("mensaje", "Pedido creado", "idPedido", pedido.getIdPedido()));
     }
 
     @GetMapping("/usuario/{idUsuario}")

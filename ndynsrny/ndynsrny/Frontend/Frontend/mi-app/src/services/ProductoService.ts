@@ -8,4 +8,6 @@ export const ProductoService = {
   actualizar: (id: number, p: Partial<Producto>) =>
     api.put<Producto>(`/productos/${id}`, p),
   eliminar: (id: number) => api.del<void>(`/productos/${id}`),
+  ajustarStock: (id: number, cantidad: number) =>
+    api.patch<{ mensaje: string; stock: number }>(`/productos/${id}/stock`, { cantidad }),
 };
