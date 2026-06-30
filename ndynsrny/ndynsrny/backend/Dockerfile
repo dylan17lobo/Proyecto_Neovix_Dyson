@@ -7,6 +7,6 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jre-jammy
 COPY --from=build /target/*.jar app.jar
 
-# Exponer puerto y limitar la RAM a 300MB para que Render no lo tumbe
-EXPOSE 8080
+# Exponer puerto y limitar la RAM a 300MB para que Render no lo tumbe 
+EXPOSE 8080 
 CMD ["java", "-Xmx300m", "-Xms300m", "-jar", "app.jar"]
