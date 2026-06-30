@@ -106,7 +106,8 @@ export function PanelAdmin() {
     <div className="min-h-screen bg-[#0B0F19] text-white py-12 px-6 lg:px-12">
       <div className="container mx-auto" style={{ maxWidth: "1280px" }}>
         <div className="mb-10">
-          <h2 className="text-3xl font-black tracking-widest text-white mb-2 uppercase italic">Panel Administrador</h2>
+          <h2 className="text-3xl font-black tracking-widest text-white mb-2 uppercase italic">Panel 
+          istrador</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-transparent"></div>
         </div>
 

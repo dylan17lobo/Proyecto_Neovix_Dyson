@@ -1,0 +1,22 @@
+Universidad de Costa Rica
+Sede de Occidente
+Carrera de Informática Empresarial
+Desarrollo de Software III
+Grupo 1
+
+Proyecto Neovix Dyson
+
+Estudiante:
+Abigail García Bonilla (C5F263)
+Danny Zamora Martínez (C4L159)
+Allan Arias Orozco (C30725)
+Dylan Lobo Quesada (C5G526)
+Sebastián Alvarado García (C5C341)
+
+Docente:
+Juan Diego Rodríguez
+
+I Ciclo, 2026.
+
+Enlace para ingresar al proyecto: 
+https://neovix-dyson.onrender.com
